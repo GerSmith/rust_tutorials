@@ -25,33 +25,34 @@ fn main() {
         io::stdin().read_line(&mut guess).expect("Ошибка чтения!");
         // Обработка преобразования строки ввода
         let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
+            Ok(num) => {
+                // Логическая проверка на вхождение в диапазон
+                if num < 1 || num > 100 {
+                    println!("Необходмо ввести число от 1 до 100, а не {}!", num);
+                    continue;
+                }
+                num
+            }
             Err(_) => {
                 println!("Необходмо ввести число от 1 до 100! Попробуй ещё раз!");
                 continue;
             }
         };
-        // Логическая проверка на вхождение в диапазон
-        if guess < 1 || guess > 100 {
-            println!("Необходмо ввести число от 1 до 100! Попробуй ещё раз!");
-            continue;
-        } else {
-            // Тестовый вывод
-            // println!("Ваша догадка: {}", guess);
-            // Если прошли все условия, увеличиваем счётчик попыток
-            attempts += 1;
-            // Шаблон сравнения
-            match guess.cmp(&secret_number) {
-                Ordering::Greater => println!("Много"),
-                Ordering::Less => println!("Мало"),
-                Ordering::Equal => {
-                    println!("Молодец! Ты угадал!");
-                    println!("Тебе понадобилось {} попыток.", attempts);
-                    break;
-                }
+        // Тестовый вывод
+        // println!("Ваша догадка: {}", guess);
+        // Если прошли все условия, увеличиваем счётчик попыток
+        attempts += 1;
+        // Шаблон сравнения
+        match guess.cmp(&secret_number) {
+            Ordering::Greater => println!("Много"),
+            Ordering::Less => println!("Мало"),
+            Ordering::Equal => {
+                println!("Молодец! Ты угадал!");
+                println!("Тебе понадобилось {} попыток.", attempts);
+                break;
             }
-            // Тестовый вывод
-            // println!("Загаданное число: {}", secret_number);
         }
+        // Тестовый вывод
+        // println!("Загаданное число: {}", secret_number);
     }
 }
