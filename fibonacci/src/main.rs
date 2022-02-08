@@ -4,6 +4,7 @@
 
 use std::io;
 
+/*
 fn fib(num: u32) -> u32 {
     if num == 0 {
         0
@@ -11,6 +12,15 @@ fn fib(num: u32) -> u32 {
         1
     } else {
         fib(num - 1) + fib(num - 2)
+    }
+}
+*/
+// more rust
+fn fibonacci(n: u32) -> u32 {
+    match n {
+        0 => 1,
+        1 => 1,
+        _ => fibonacci(n - 1) + fibonacci(n - 2),
     }
 }
 
@@ -26,6 +36,6 @@ fn main() {
 
     println!("Последовательность чисел Фибоначчи:");
     for n in 0..num + 1 {
-        println!("n = {}, Fn = {}", n, fib(n));
+        println!("n = {}, Fn = {}", n, fibonacci(n));
     }
 }
