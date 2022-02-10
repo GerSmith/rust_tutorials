@@ -6,7 +6,7 @@
 
 fn main() {
     let phrase_as_str = "Hello world!";
-    let phrase_as_string = "World hello!";
+    let phrase_as_string = String::from("World hello!");
 
     // тестовый вывод
     println!("{}", phrase_as_str);
@@ -14,7 +14,7 @@ fn main() {
 
     // тест функции
     println!("{}", first_word(phrase_as_str));
-    println!("{}", first_word(phrase_as_string));
+    println!("{}", first_word(&phrase_as_string));
 }
 
 fn first_word(some_string: &str) -> &str {
